@@ -56,8 +56,43 @@ app.get('/get_user',async(req,res)=>{
 
 
 //update user details
+app.patch('/update_user/:id', async(req,res)=>{
+    const UpdatedUser = await UserDetail.findByIdAndUpdate(req.params.id,req.body,{
+        new : true,
+        runValidators: true
+    })
+    try{
+        res.status(200).json({
+            status:"Sucess",
+            data : {
+                UpdatedUser
+            }
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+})
 
 //delete user details
+app.delete('/delete_user/:id',async(req,res)=>{
+    await UserDetail.findByIdAndDelete(req.params.id)
+
+    try{
+        res.status(204).json({
+            status:"Sucess",
+            data : {},
+            message:"deleted user"
+        })
+
+    }
+    catch(err){
+        res.status(500).json({
+            status:"failed",
+            message: err
+        })
+    }
+})
 
 
 mongoose.connect(DB, {
