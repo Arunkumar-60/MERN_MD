@@ -63,7 +63,7 @@ app.patch('/update_user/:id', async(req,res)=>{
     })
     try{
         res.status(200).json({
-            status:"Sucess",
+            status:"Success",
             data : {
                 UpdatedUser
             }
@@ -80,7 +80,7 @@ app.delete('/delete_user/:id',async(req,res)=>{
 
     try{
         res.status(204).json({
-            status:"Sucess",
+            status:"Success",
             data : {},
             message:"deleted user"
         })
